@@ -1,0 +1,1247 @@
+html {
+    overflow-x: hidden;
+    scroll-behavior: auto !important; /* Tvingar bort webbläsarens egna krockande skrollfunktioner */
+}
+
+body {
+    font-family: 'Rufina', Georgia, serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fcfcfc;
+    overflow-x: hidden;
+    
+    /* ÄNDRA HUVUDFÄRGEN PÅ ALL TEXT HÄR (T.ex. #333333 för mörkgrå eller #000000 för kolsvart) */
+    color: #4b4a4a; 
+}
+
+/* 
+   Detta block tvingar alla element att ärva typsnittet från body, 
+   men låter oss ändra färger unikt på olika element om vi vill framöver.
+*/
+h1, h2, h3, p, a, button, input, textarea {
+    font-family: 'Rufina', Georgia, serif;
+    /* Ta bort 'color: #b12121' härifrån om du inte vill att ALL text ska bli röd */
+}
+
+/* Grundstil för alla länkar på hemsidan så de inte blir standardblå/lila */
+a {
+    color: inherit; /* Gör att länkar automatiskt tar samma färg som texten runt omkring */
+}
+
+/* --- DEN GEMENSAMMA MENYN (RAD A) --- */
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 30px;
+    box-sizing: border-box;
+
+    width: 100%;
+
+    background-color: #fcfcfc;
+
+    position: relative;
+
+    top: 0;
+    left: 0;
+
+    z-index: 1000;
+
+    transition:
+        transform 0.5s cubic-bezier(
+            0.215,
+            0.610,
+            0.355,
+            1.000
+        ),
+        padding 0.3s ease;
+
+    will-change: transform;
+}
+
+
+.site-header.is-sticky {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    padding: 15px 30px;
+
+    z-index: 2500;
+
+    box-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.03);
+
+    animation:
+        menuSlideDown
+        0.5s
+        cubic-bezier(
+            0.215,
+            0.610,
+            0.355,
+            1.000
+        )
+        forwards;
+}
+
+
+@keyframes menuSlideDown {
+
+    from {
+        transform: translateY(-100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+
+}
+
+
+
+/* Styr bredden så att de tre delarna fördelas symmetriskt över skärmen */
+.header-item {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+/* Placerar logotyp-länken till vänster */
+.a1 { 
+    justify-content: center; /* Ändrat tillbaka till start så loggan ligger snyggt till vänster */
+}
+
+/* Styr storleken på din logotyp-bild */
+.header-logo {
+    height: 8rem;      /* Sätter höjden till exakt samma höjd som din h1-text var innan */
+    width: auto;         /* Behåller bildens exakta proportioner så den inte blir hoptryckt */
+    display: block;
+    transition: opacity 0.3s ease;
+}
+
+/* Valfritt: Ger en superdiskret toning när man hovrar över loggan för att visa att den är klickbar */
+.logo-link:hover .header-logo {
+    opacity: 0.75;
+}
+
+
+.a2 { justify-content: center; 
+    text-align:center;
+}
+.main-nav { display: flex; gap: 25px;}
+
+.a3 { justify-content: center;
+}
+
+/* --- LINJE-ANIMATIONEN (Gäller alla nav-länkar) --- */
+.nav-link {
+    font-family: 'Rufina', serif;
+    text-decoration: none;
+    color: inherit;
+    font-size: 1.2rem;
+    position: relative;
+    padding: 4px 0;
+    cursor: pointer;
+}
+
+/* Skapar den osynliga linjen under texten */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1.5px;
+    bottom: 0;
+    left: 0;
+    background-color: #4b4a4a;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.4s ease-out;
+}
+
+/* När man hovrar: Linjen växer ut från vänster */
+.nav-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/* Håller linjen fullt synlig på den aktiva sidan */
+.nav-link.active::after {
+    transform: scaleX(1) !important;
+}
+
+
+/* --- STARTSIDANS BILD-GRID (RAD B) --- */
+.home-image-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /* Tre lika breda kolumner (33.33% var) */
+    height: 55vh; /* Bilderna tar upp 65% av skärmhöjden */
+    width: 100%;
+}
+
+.image-link {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    display: block;
+}
+
+.image-link img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Fyller ut rutan utan att sträckas ut konstigt */
+    transition: transform 0.6s ease;
+    display: block;
+}
+
+/* Ljusgrå slöja vid hovring */
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(220, 220, 220, 0);
+    z-index: 1;
+    transition: background-color 0.4s ease;
+}
+
+.image-link:hover img {
+    transform: scale(1.05); /* 5% zoom */
+}
+
+.image-link:hover .image-overlay {
+    background-color: rgba(180, 180, 180, 0.25); /* Ljusgrå overlay aktiveras */
+}
+
+
+/* --- FOOTER-STYLING (RAD C) --- */
+.footer-container {
+    display: flex;
+    justify-content: space-between; /* Fördelar C1, C2 och C3 jämnt över skärmen */
+    align-items: flex-end; /* Linjerar texterna mot sidans absoluta botten */
+    width: 100%;
+    padding: 20vh 40px 40px 40px; /* Luft i topp, samt marginaler mot skärmkanterna */
+    box-sizing: border-box;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 20px;
+    text-align: center;
+    max-width: 600px;
+    width:100%;
+    align-items: center;
+}
+
+.footer-content h2 {
+    font-size: 1.3rem;
+    margin: 0 0 15px 0;
+    font-weight: 700;
+}
+
+.footer-buttons {
+    display: flex;
+    gap: 25px;
+    margin-top:20px;
+    width:100%;
+    justify-content:center;
+
+    border-top: 1px solid rgba(0, 0, 0, 0.15); /* En tunn, diskret mörk linje */
+    padding-top: 25px; /* Skapar luft mellan linjen och knapparna under */
+}
+
+.footer-item {
+    flex: 1;
+    display: flex;
+    box-sizing: border-box;
+}
+
+.c1 { 
+    justify-content: flex-start; 
+}
+
+/* C2: Placerar innehållet i mitten */
+.c2 { 
+    justify-content: center; 
+}
+
+/* C3: Tom högersida för symmetri */
+.c3 { 
+    justify-content: flex-end; 
+}
+
+.copyright-text {
+    font-size: 0.8rem; /* Något mindre än vanlig text */
+    color: rgba(0, 0, 0, 0.4); /* Elegant, ljusgrå och dämpad färg */
+    margin: 0;
+    white-space: nowrap; /* Hindrar texten från att brytas på ett fult sätt */
+}
+
+/* --- HELSKÄRMSVISNING (MODAL) --- */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(20, 20, 20, 0.9);
+    z-index: 3000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal.show .modal-content {
+    transform: scale(1);
+}
+
+.modal-close {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    background: none;
+    border: none;
+    color: white;
+    font-family: 'Rufina', serif;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 5px 10px;
+    z-index: 3100;
+}
+
+.modal-close::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1.5px;
+    bottom: 0;
+    left: 0;
+    background-color: white;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-out;
+}
+
+.modal-close:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/* UI-pilar till helskärmsläget */
+.modal-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 5rem;
+    font-family: serif;
+    cursor: pointer;
+    padding: 0 20px;
+    z-index: 3200;
+    transition: color 0.2s ease, transform 0.2s ease;
+    user-select: none;
+}
+
+.modal-arrow:hover { color: rgba(255, 255, 255, 1); }
+.prev-arrow:hover { transform: translateY(-50%) scale(1.1); }
+.next-arrow:hover { transform: translateY(-50%) scale(1.1); }
+
+
+/* --- UPPDATERAD MODAL FÖR BILD + TEXT BREDVID VARANDRA --- */
+
+/* Omsluter både bilden och textrutan i ett horisontellt flöde */
+.modal-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 85%;
+    max-width: 1400px;
+    height: 80vh;
+    gap: 40px; /* Avstånd mellan bilden och textrutan */
+}
+
+/* Bildbehållaren till vänster */
+.modal-image-container {
+    flex: 2; /* Bilden får ta upp mer plats än textrutan */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+/* Själva bilden */
+.modal-content {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transform: scale(0.95);
+    transition: transform 0.4s ease, opacity 0.2s ease-in-out;
+    opacity: 1;
+}
+
+/* Den nya subtila textrutan till höger */
+.modal-text-box {
+    flex: 0.8; /* Tar upp en mindre, nätt del av skärmen */
+    color: white;
+    text-align: left;
+    transition: opacity 0.2s ease-in-out;
+    opacity: 1;
+    padding: 20px;
+    border-left: 1px solid rgba(255, 255, 255, 0.2); /* Elegant, tunt streck som avskiljare */
+    font:inherit;
+}
+
+.modal-text-box h3 {
+    font-size: 1.8rem;
+    margin: 0 0 15px 0;
+    font-weight: normal;
+    color: white; /* Tvingar titeln att vara vit mot den mörka modal-bakgrunden */
+}
+
+.modal-text-box p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8); /* Något mjukare vit färg för brödtexten */
+    white-space:pre-line;
+    font:inherit;
+}
+
+/* Justering av pilar så de hamnar utanför wrappern på skärmkanterna */
+.prev-arrow { left: 10px; }
+.next-arrow { right: 10px; }
+
+
+/* --- SIKERSTÄLL ALLMÄN STYLING FÖR UNDERSIDOR --- */
+.page-content {
+    padding: 40px 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- ANIMATION FÖR STARTSIDANS BILDER --- */
+
+.fade-up-image {
+    /* Kopplar bilderna till samma eleganta rörelsekurva som utställningsrubriken */
+    animation: subtleFadeUp 1.6s cubic-bezier(0.215, 0.610, 0.355, 1.000) forwards;
+    
+    /* Startposition: Dold och flyttad 20 pixlar nedåt */
+    opacity: 0;
+    transform: translateY(20px);
+    will-change: transform, opacity;
+}
+
+/* Fördröjningar (Delays) så att bilderna tonar in i en mjuk sekvens från vänster till höger */
+.fade-in-1 {
+    animation-delay: 0.1s;
+}
+
+.fade-in-2 {
+    animation-delay: 0.3s;
+}
+
+.fade-in-3 {
+    animation-delay: 0.5s;
+}
+
+
+/* Styr storleken på din statiska logotyp */
+.deer_logo {
+    height: 7.1rem;      /* Matchar textstorleken på Instagram bredvid */
+    width: auto;         /* Behåller bildens exakta proportioner */
+    display: block;
+    
+    /* Garanterar att muspekaren förblir en vanlig pil och inte en klickbar hand */
+    cursor: default; 
+    
+    /* Inga transitioner eller opacity-ändringar finns kvar här */
+}
+
+.butterfly_logo {
+    height: 4.1rem;
+    width: auto;
+    display: block;
+    cursor: default;
+    padding-bottom:4vh;
+}
+
+
+
+
+
+/* EXHIBITIONS */
+
+
+/* --- STYLING FÖR UTSTÄLLNINGSSIDAN --- */
+
+.site-header-exhibitions {
+    /* Vi behåller bara z-index, bakgrunden styrs nu centralt av .site-header */
+    z-index: 1000;
+}
+
+
+.parallax-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    z-index: -1;
+}
+
+.exhibitions-hero {
+    background-color: #fcfcfc;
+    height: 55vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-title {
+    font-size: 4.7rem;
+    font-weight: 400;
+    letter-spacing: 2px;
+    margin: 0;
+}
+
+/* Det klockrena tomrummet (glipan) där parallaxen syns */
+.parallax-spacer {
+    height: 80vh;
+    background: transparent;
+}
+
+/* NY BEHÅLLARE: Ger hela nedre halvan av sidan en obruten fast bakgrundsfärg */
+.exhibitions-content-wrapper {
+    background-color: #e9e9e9; /* Hela din önskade färg */
+    width: 100%;
+}
+
+.exhibitions-content-wrapper .footer-container {
+    background-color: #fcfcfc; /* Ger footern sin ljusa färg tillbaka */
+    width: 100%;
+    display: flex; /* Säkerställer att trestegs-layouten för copyright och knappar behålls */
+}
+
+/* Årtalsrubrikerna - Ärver nu färgen från wrappern utan glipor */
+.year-heading {
+    font-family: 'Rufina', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0;
+    padding: 80px 10% 20px 10%;
+    box-sizing: border-box;
+}
+
+.location{
+    font-family: 'Rufina', serif;
+    font-size: 1.3rem;
+    font-weight: normal;
+    margin: 0;
+    box-sizing: border-box;
+    color:#4b4a4a
+}
+
+/* Utställningsraderna - Ärver också färgen perfekt */
+.exhibition-row {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 40px 10% 60px 10%;
+    box-sizing: border-box;
+    gap: 80px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15); /* Tematisk, lite mörkare delningslinje mellan utställningar */
+}
+
+.exhibition-row.no-border {
+    border-bottom: none;
+    padding-bottom: 20px;
+}
+
+.exhibition-square-trigger {
+    position: relative;
+    width: 350px;
+    height: 350px;
+    flex-shrink: 0;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+.exhibition-square-trigger img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.exhibition-square-trigger:hover img { transform: scale(1.05); }
+.exhibition-square-trigger:hover .image-overlay { background-color: rgba(180, 180, 180, 0.25); }
+
+.exhibition-text { max-width: 600px; }
+.exhibition-text h2 { font-size: 2rem; margin: 0 0 20px 0; font-weight: 700; }
+.exhibition-text p { 
+    font-size: 1.1rem; 
+    line-height: 1.6; 
+    
+    /* Ändra till 'inherit' så att brödtexten i utställningarna följer din globala färg */
+    color: inherit; 
+}
+
+.footer-exhibitions-patch .copyright-text {
+    color: rgba(0, 0, 0, 0.45);
+}
+
+/* --- ANIMATION FÖR UTSTÄLLNINGSRUBRIK --- */
+
+.fade-up-title {
+    /* Kopplar rubriken till animationen 'subtleFadeUp' nedan */
+    animation: subtleFadeUp 1.8s cubic-bezier(0.215, 0.610, 0.355, 1.000) forwards;
+    
+    /* Startposition: Gömd (opacity 0) och nedflyttad 15 pixlar */
+    opacity: 0;
+    transform: translateY(15px); 
+    will-change: transform, opacity; /* Säger till webbläsaren att förbereda grafikkortet */
+    margin-bottom:100px;
+    
+    font-family: Garamond, serif;
+    
+    letter-spacing: 10px;
+}
+
+/* Själva koreografin för animationen */
+@keyframes subtleFadeUp {
+    to {
+        /* Slutposition: Helt synlig och på sin rätta originalplats */
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+
+
+
+/* ABOUT */
+
+
+/* --- STYLING SPECIFIKT FÖR ABOUT-SIDAN --- */
+
+/* Centrerar innehållet på skärmen och skapar två kolumner */
+.about-container {
+    display: flex;
+    max-width: 1400px;
+    margin: 50px auto 100px auto;
+    gap: 80px; /* Avstånd mellan texten och bilden */
+    align-items: center; /* Centrerar texten vertikalt bredvid bilden */
+    box-sizing: border-box;
+}
+
+/* Vänster kolumn (Text) */
+.about-text-column {
+    flex: 1.5; /* Tar upp 1 del av utrymmet */
+}
+
+/* Länken på namnet i rubriken */
+.about-heading-link {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: inherit; 
+    position: relative;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+/* Samma typ av linje-animering under ditt namn som i huvudmenyn */
+.about-heading-link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: black;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.4s ease-out;
+}
+
+.about-heading-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.about-heading-link::after {
+    transform-origin: bottom right;
+}
+
+.about-text-column p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: inherit;
+    margin-top: 20px;
+}
+
+/* Höger kolumn (Bild) */
+.about-image-column {
+    flex: 0.8; /* Tar upp 1.3 delar, vilket gör den bredare än textrutan */
+    margin-bottom:30vh;
+}
+
+.about-image-column img {
+    width: 100%;
+    max-width: 450px;
+    height: auto;
+    display: block;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); /* Ger en väldigt diskret och mjuk skugga till bilden */
+}
+
+.education{
+    padding-top:15vh;
+}
+
+/* --- ANIMATION FÖR ABOUT-SIDANS INNEHÅLL --- */
+
+/* Aktiverar den subtila intoningen för textspalten */
+.about-fade-text {
+    animation: subtleFadeUp 1.6s cubic-bezier(0.215, 0.610, 0.355, 1.000) forwards;
+    opacity: 0;
+    transform: translateY(20px);
+    will-change: transform, opacity;
+    animation-delay: 0.1s; /* Texten börjar nästan direkt */
+}
+
+/* Lägger till en kort fördröjning på bilden så den glider upp precis efter texten */
+.about-image-column.fade-up-image {
+    animation-delay: 0.4s; /* Väntar ett litet ögonblick för en elegant sekvenseffekt */
+}
+
+
+
+
+
+/* WORKS */
+
+
+/* --- STYLING FÖR WORKS KONTINUERLIGT FLÖDE --- */
+
+/* Omsluter alla bilder i ett flex-flöde */
+.works-flow-container {
+    display: flex;
+    flex-wrap: wrap; /* Gör att bilderna hoppar ner på nästa rad när det blir fullt */
+    gap: 20px;       /* Exakt 10px mellanrum mellan ALLA bilder (sidor, topp, botten) */
+    padding: 0 20px; /* Symmetriskt 10px avstånd till skärmens ytterkanter */
+    max-width: 100vw;
+    margin: 0px auto 60px auto; /* 120px luft under Rad A */
+    box-sizing: border-box;
+}
+
+/* Varje bildbehållare */
+.flow-item {
+    position: relative;
+    height: 320px;   /* Bestämmer den ideala höjden på raderna. Ändra denna för att göra bilderna större/mindre generellt */
+    flex-grow: 1;    /* VIKTIGT: Gör att bilderna förstoras automatiskt för att fylla ut raden perfekt */
+    overflow: hidden;
+}
+
+/* Själva bilden inuti flödet */
+.flow-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Fyller ut det dynamiska flex-utrymmet utan att förvrängas */
+    transition: transform 0.5s ease;
+    display: block;
+}
+
+/* Diskret hover-zoom */
+.flow-item:hover img {
+    transform: scale(1.04);
+}
+
+/* Gör att den sista raden inte sträcks ut på ett onaturligt brett sätt om den bara har 1-2 bilder */
+.works-flow-container::after {
+    content: '';
+    flex-grow: 99999; /* Tar upp resterande utrymme på sista raden så bilderna där behåller normal storlek */
+}
+
+/* --- DYNAMISK INTRO-EFFECT FÖR WORKS-BILDERNA --- */
+
+/* Bildens dolda startläge (när den är utanför skärmen) */
+.flow-item {
+    opacity: 0;
+    transform: translateY(30px); /* Ligger lite lägre underifrån för en tydlig men elegant effekt */
+    transition: opacity 1.2s cubic-bezier(0.215, 0.610, 0.355, 1.000), 
+                transform 1.2s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    will-change: transform, opacity;
+}
+
+/* Klass som läggs till via JavaScript så fort bilden skrollas in i vyn */
+.flow-item.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Behåll din befintliga hover-effekt för bilderna, den samspelar nu perfekt under! */
+.flow-item.animate-in:hover img {
+    transform: scale(1.04);
+}
+
+
+
+
+
+
+
+/* CONTACT*/
+/* --- CONTACT PAGE STYLING --- */
+
+/* Centrerar formuläret på skärmen och sätter 150px luft till menyn högst upp */
+.contact-page-container {
+    max-width: 800px; /* Sätter en elegant, smalare bredd på formuläret så det inte blir för brett */
+    margin: 50px auto 60px auto;
+    padding: 0 40px;
+    box-sizing: border-box;
+}
+
+.contact-form-wrapper {
+    width: 100%;
+}
+
+.art-contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* Jämnt och stort mellanrum mellan raderna */
+}
+
+/* Skapar två lika stora kolumner bredvid varandra för Förnamn / Efternamn */
+.form-row-double {
+    display: flex;
+    gap: 20px; /* 20px avstånd mellan förnamn och efternamn */
+    width: 100%;
+}
+
+.form-row-double .form-group {
+    flex: 1; /* Tvingar båda namnrutorna att dela utrymmet exakt 50/50 */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Stylling för etiketterna (ledtexterna) ovanför rutorna */
+.form-group label {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: inherit; /* Ärver den färg du ställt in för resten av sidan */
+    text-transform: uppercase; /* Gör texten diskret i versaler */
+    letter-spacing: 1px;
+    color: #4b4a4a;
+}
+
+/* Gemensam styling för alla inmatningsrutor */
+.form-group input,
+.form-group textarea {
+    font-family: 'Rufina', Georgia, serif;
+    padding: 14px 18px;
+    border: 1px solid rgba(0, 0, 0, 0.15); /* Tunn, elegant ram */
+    background-color: #fff;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+/* När användaren klickar inuti en ruta blir ramen solid svart */
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+/* Håller ordning på Submit-knappens placering */
+.form-submit-container {
+    display: flex;
+    justify-content: flex-start; /* Placerar knappen till vänster under meddelanderutan */
+    margin-top: 10px;
+}
+
+/* Submit-knappen */
+.submit-art-btn {
+    font-family: 'Rufina', Georgia, serif;
+    background-color: #000;
+    color: #fff;
+    border: 1px solid #000;
+    padding: 14px 45px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Hover-effekt på submit-knappen (Inverteras till transparent/svart text) */
+.submit-art-btn:hover {
+    background-color: transparent;
+    color: #000;
+}
+/* --- KURSIV PLACEHOLDER-TEXT FÖR ALLA WEBBLÄSARE --- */
+
+/* Chrome, Firefox, Opera, Safari */
+::placeholder {
+    font-style: italic;
+    opacity: 0.5; /* Gör texten lite diskretare, ändra till 1 om du vill ha den helt mörk */
+}
+
+/* Internet Explorer 10-11 */
+:-ms-input-placeholder {
+    font-style: italic;
+}
+
+/* Microsoft Edge */
+::-ms-input-placeholder {
+    font-style: italic;
+}
+
+
+
+
+/* --- FOOTER KNAPPAR & UTSEENDE --- */
+
+/* Fixar länkbehållarna för BÅDE instagram och dela samtidigt */
+.footer-buttons .nav-link {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    line-height: 0 !important; /* Tar bort text-radhöjd som tvingar upp bildstorleken */
+    text-decoration: none !important;
+}
+
+/* Tvingar bilderna inuti länkarna till exakt rätt, nätta storlek (Städad från dubbletter) */
+.instagram_button, 
+.share-button {
+    height: 1.6rem !important; /* Ändrat till din önskade 1.6rem, låst med !important */
+    width: auto !important;   
+    display: block !important;
+}
+
+/* --- TA BORT HOVER-LINJEN I FOOTERN --- */
+.footer-container .nav-link::after {
+    display: none !important;
+}
+
+.footer-container .nav-link:hover {
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+/* --- STYLING FÖR DELA-KNAPPENS BEKRÄFTELSE --- */
+.share-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.share-tooltip {
+    position: absolute;
+    bottom: 130%; 
+    left: 50%;
+    transform: translateX(-50%) translateY(5px);
+    background-color: rgba(0, 0, 0, 0.75); 
+    color: #fff;
+    font-size: 0.75rem;
+    padding: 6px 12px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 100;
+    font-family: 'Rufina', Georgia, serif;
+}
+
+.share-tooltip.show-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+
+
+
+
+/* MOBIL-ANPASSNING*/
+/* ==========================================================================
+   RESPONSIV DESIGN FÖR MOBILER & DOSOR (BREAKPOINT: 768px)
+   ========================================================================== */
+@media screen and (max-width: 768px) {
+
+    /* ==========================================================================
+       1. UPPDATERAD MOBILMENY (TRE NIVÅER: LOGGA / RAD 1 / RAD 2)
+       ========================================================================== */
+    
+    /* Gäller för BÅDE vanlig och sticky-meny i mobilen */
+    .site-header,
+    .site-header.is-sticky {
+        flex-direction: column !important; /* Tvingar loggan och knappblocket att ligga under varandra */
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 15px !important; /* Mellanrum mellan loggan och knapparna */
+        padding: 15px 10px !important;
+        width: 100% !important;
+        box-sizing: border-box;
+    }
+
+    /* Nivå 1: Loggan i A1 placeras högst upp och centreras */
+    .header-item.a1 {
+        justify-content: center !important;
+        width: 100%;
+        order: 1; /* Garanterar att den ligger först */
+    }
+
+    /* Styr loggans storlek i mobilen (Gör den lite större och tydligare) */
+    .site-header .header-logo,
+    .site-header.is-sticky .header-logo {
+        height: 1.8rem !important; /* Justera till 1.5rem eller 1.6rem om du vill ha den ännu större */
+        margin: 0 auto !important;
+        width: auto !important;
+    }
+
+    /* Nivå 2 & 3: Knappblocket (A2) placeras under loggan */
+    .header-item.a2 {
+        justify-content: center !important;
+        width: 100%;
+        order: 2; /* Läggs under loggan */
+        padding: 0 10px;
+    }
+
+    /* Skapar ett Grid-system för att dela upp knapparna i 3 + 2 */
+    .site-header .main-nav,
+    .site-header.is-sticky .main-nav {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 12px 25px !important; /* 12px mellanrum mellan raderna, 20px mellan knapparna */
+        justify-content: center !important;
+        max-width: 320px;
+        margin: 0 auto !important;
+    }
+
+    /* Centrerar de två sista knapparna (About och Contact) på rad 2 */
+    .site-header .main-nav .nav-link,
+    .site-header.is-sticky .main-nav .nav-link {
+        font-size: 0.85rem !important; /* Nätt och bra storlek så inget klipper utanför skärmen */
+        white-space: nowrap !important;
+        display: inline-block !important;
+    }
+
+    /* DÖLJER symbolen i A3 helt och hållet på mobilen */
+    .site-header .a3 {
+        display: none !important;
+    }
+
+
+
+    /* 2. STARTSIDAN (main.html) */
+    .home-image-grid {
+        grid-template-columns: 1fr; /* Ändrar från 3 kolumner till 1 kolumn */
+        height: auto; /* Låter bilderna styra höjden istället för låsta 65vh */
+    }
+
+    .image-link {
+        height: 50vh; /* Varje bild får ta upp halva skärmhöjden i mobilen */
+        width: 100%;
+    }
+
+
+    /* 3. UTSTÄLLNINGSSIDAN (exhibitions.html) */
+    .exhibitions-hero {
+        height: 50vh; /* Kortare startblock i mobilen så man snabbare kan skrolla ner */
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .parallax-spacer {
+        height: 30vh; /* Mindre glipa i mobilen så skrollet känns tajtare */
+    }
+
+    .exhibition-row {
+        flex-direction: column; /* Lägger bilden ovanför texten istället för bredvid */
+        gap: 30px;
+        padding: 40px 20px;
+    }
+
+    .exhibition-square-trigger {
+        width: 100%; /* Bildkvadraten tar upp hela bredden i mobilen */
+        max-width: 320px;
+        height: 320px; /* Behåller kvadratisk form */
+        margin: 0 auto; /* Centrerar kvadraten */
+    }
+
+    .exhibition-text {
+        text-align: center; /* Centrerar texten under bilden för bättre läsbarhet */
+        max-width: 100%;
+    }
+
+
+    /* 4. ABOUT-SIDAN (about.html) */
+    .about-container {
+        flex-direction: column-reverse; /* Lägger texten ÖVERST och porträttet UNDERST */
+        margin: 40px auto;
+        padding: 0 35px !important;
+        gap: 10px !important;
+    }
+
+    .about-text-column{
+        width: 100%;
+        text-align: center;
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    
+    .about-image-column {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+        justify-content: center;
+        display: flex;
+    }
+
+    .about-image-column img {
+        margin-top: 0 !important;; /* Centrerar porträttet */
+        max-width: 80%; /* Gör bilden lite mindre och nättare på mobilskärmen */
+        display:block;
+        align-items: center;
+    }
+
+    .about-text-column .education p:last-child{
+        margin-bottom: 0 !important;
+        padding-bottom: 0!important;
+    }
+
+
+    /* 5. WORKS-SIDAN (works.html) */
+    .works-flow-container {
+        margin-top: 40px;
+    }
+    
+    .flow-item {
+        height: 240px; /* Krymper radhöjden i mobilen så att bilderna inte blir gigantiska */
+    }
+
+
+    /* 6. CONTACT-SIDAN (contact.html) */
+    .contact-page-container {
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+
+    .form-row-double {
+        flex-direction: column; /* Lägger Förnamn och Efternamn under varandra istället för bredvid */
+        gap: 30px;
+    }
+
+
+    /* 7. FOOTERN PÅ ALLA SIDOR */
+    .footer-container {
+        flex-direction: column; /* Lägger copyright, namn och knappar i en vertikal rad */
+        align-items: center;
+        gap: 35px;
+        padding: 10vh 20px 30px 20px;
+    }
+
+    .footer-item {
+        justify-content: center !important;
+        width: 100%;
+    }
+
+    /* Flyttar ner copyright-texten så den ligger absolut längst ned i mobilen */
+    .c1 {
+        order: 3; 
+    }
+    
+    .copyright-text {
+        text-align: center;
+        white-space: normal; /* Tillåter texten att brytas på två rader om skärmen är smal */
+    }
+
+       /* ==========================================================================
+       MODAL / HELSKÄRMSVISNING I MOBILEN
+       ========================================================================== */
+   
+    /* Ändrar så att textrutan hamnar UNDER bilden istället för bredvid */
+    .modal-wrapper {
+        flex-direction: column !important;
+        height: auto !important;
+        max-height: 90vh;
+        gap: 15px !important;
+        padding: 20px;
+        overflow-y: auto; /* Tillåter skroll inuti modalen om texten är lång på små skärmar */
+    }
+
+    .modal-image-container {
+        flex: none !important;
+        height: 50vh; /* Bilden får ta upp hälften av skärmen i helskärmsläge */
+        width: 100%;
+    }
+
+    .modal-content {
+        max-height: 50vh !important;
+    }
+
+    /* Gör hela textrutan mindre och tar bort vänsterstrecket i mobilen */
+    .modal-text-box {
+        flex: none !important;
+        width: 100%;
+        padding: 10px 0 !important;
+        border-left: none !important; /* Tar bort det vertikala strecket eftersom texten nu är under */
+        border-top: 1px solid rgba(255, 255, 255, 0.1); /* Lägger ett diskret streck ovanför texten istället */
+        text-align: center; /* Centrerar texten för bättre balans i mobilen */
+    }
+
+    /* KRYMPER TITELN: Gör den normal och betydligt mer diskret */
+    .modal-text-box h3 {
+        font-size: 1.25rem !important; /* Sänkt från 1.8rem till 1.25rem */
+        margin: 10px 0 8px 0 !important;
+    }
+
+    /* Krymper brödtexten/informationen om verket något */
+    .modal-text-box p {
+        font-size: 0.9rem !important; /* Sänkt från 1rem till 0.9rem */
+        line-height: 1.5 !important;
+    }
+
+    /* GÖR PILARNA MINDRE: Så de inte täcker bilden på smala skärmar */
+    .modal-arrow {
+        font-size: 3rem !important; /* Sänkt från 5rem */
+        padding: 0 10px !important;
+    }
+}

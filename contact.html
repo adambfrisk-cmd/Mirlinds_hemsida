@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Contact - Mirlinds Konst</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Inläsning av skrollbiblioteket i head enligt din nya struktur -->
+    <script src="https://unpkg.com"></script>
+    <!-- Google Fonts för typsnittet Rufina -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Rufina:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+    <!-- MENYN HÖGST UPP (RAD A) - Identisk med de andra, med Contact som aktiv -->
+    <header class="site-header">
+        <div class="header-item a1">
+            <a href="main.html" class="logo-link">
+                <img src="images/signature_cropped.jpeg" alt="Mirlind Jakupi Logo" class="header-logo">
+            </a>
+        </div>
+
+        <div class="header-item a2">
+            <nav class="main-nav">
+                <a href="main.html" class="nav-link">Home</a>
+                <a href="exhibitions.html" class="nav-link">Exhibitions</a>
+                <a href="works.html" class="nav-link">Works</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="contact.html" class="nav-link active">Contact</a>
+            </nav>
+        </div>
+
+        <div class="header-item a3">
+                <img src="images/deer_logo_cropped.jpeg" alt="Symbol" class="deer_logo">
+            </div>
+        </div>
+    </header>
+
+    <!-- INNEHÅLL PÅ CONTACT-SIDAN -->
+    <main class="contact-page-container">
+        <div class="contact-form-wrapper">
+            
+            <!-- BYT UT "mirlindjakupi.art@gmail.com" nedan till din Formspree-länk när du har registrerat dig -->
+            <form action="https://formsubmit.co/mirlindjakupi.art@gmail.com" method="POST" class="art-contact-form">
+                <input type="hidden" name="_captcha" value="false">
+                
+                <!-- RUTA 1 & 2: Förnamn och Efternamn bredvid varandra -->
+                <div class="form-row-double">
+                    <div class="form-group">
+                        <label for="firstname">First Name</label>
+                        <input type="text" id="firstname" name="firstname" required placeholder="John">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname">Last Name</label>
+                        <input type="text" id="lastname" name="lastname" required placeholder="Doe">
+                    </div>
+                </div>
+
+                <!-- RUTA 3: Mailadress under namnrutorna -->
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required placeholder="john.doe@example.com">
+                </div>
+
+
+                <!-- RUTA 4: Stor meddelanderuta -->
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="8" required placeholder="Write your message here..."></textarea>
+                </div>
+
+                <!-- SUBMIT-KNAPP -->
+                <div class="form-submit-container">
+                    <button type="submit" class="submit-art-btn">Submit</button>
+                </div>
+                
+            </form>
+        </div>
+    </main>
+
+    <!-- FOOTER LÄNGST NED (Tredelad som på de andra sidorna) -->
+    <footer class="footer-container">
+
+            <div class="footer-item c1">
+                <p class="copyright-text">&copy; 2026 Mirlind Jakupi. All rights reserved.</p>
+            </div>
+
+            <div class="footer-content">
+                <img src="images/butterfly_logo_cropped.jpeg" alt="Symbol" class="butterfly_logo">
+
+                <div class="footer-buttons">
+                    <a href="https://instagram.com/mirlindjakupi" target="_blank" class="nav-link">
+                        <img src="images/instagram_logo_greyer.png" alt="instagram" class = "instagram_button">
+                    </a>
+                <div class="share-wrapper">
+                        <a href="javascript:void(0);" class="nav-link" id="share-btn">
+                            <img src="images/share_logo_grey.png" alt="share" class="share-button">
+                        </a>
+                        <span id="share-tooltip" class="share-tooltip">Link copied</span>
+                    </div>  
+                </div>
+            </div>
+            
+            <div class="footer-item c3"></div>
+        </footer>
+
+    <!-- JavaScript-filen laddas in i botten -->
+    <script src="smoothscroll.js"></script>
+</body>
+</html>

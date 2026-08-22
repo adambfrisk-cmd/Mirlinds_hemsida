@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Exhibitions - Mirlinds Konst</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Google Fonts för typsnittet Rufina -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Rufina:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Din CSS-länk ska ligga UNDER Google-länkarna -->
+    <link rel="stylesheet" href="main.css">
+
+</head>
+<body>
+
+    <!-- MENYN HÖGST UPP (RAD A) - Identisk, men med Exhibitions som aktiv -->
+    <header class="site-header site-header-exhibitions">
+        <div class="header-item a1">
+            <a href="main.html" class="logo-link">
+                <img src="images/signature_cropped.jpeg" alt="Mirlind Jakupi Logo" class="header-logo">
+            </a>
+        </div>
+
+        <div class="header-item a2">
+            <nav class="main-nav">
+                <a href="main.html" class="nav-link">Home</a>
+                <a href="exhibitions.html" class="nav-link active">Exhibitions</a>
+                <a href="works.html" class="nav-link">Works</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
+        </div>
+
+        <div class="header-item a3">
+            <img src="images/deer_logo_cropped.jpeg" alt="Symbol" class="deer_logo">
+        </div>
+    </header>
+
+    <!-- INNEHÅLLSKONTROLLER -->
+        <!-- PARALLAX-BAKGRUND (Låt denna vara som innan) -->
+    <div class="parallax-bg" style="background-image: url('images/utst_parallax.jpeg');"></div>
+
+    <div class="exhibitions-container">
+        
+        <!-- STORT VITT BLOCK HÖGST UPP -->
+        <section class="exhibitions-hero">
+            <h1 class="hero-title fade-up-title">Exhibitions</h1>
+        </section>
+
+        <!-- DEN ENDA GLIPAN SOM VISAR PARALLAX-BILDEN (50vh) -->
+        <div class="parallax-spacer"></div>
+
+        <!-- ALLT INNEHÅLL UNDER GLIPAN LIGGER NU I EN SOLID CONTAINER -->
+        <div class="exhibitions-content-wrapper">
+
+            <!-- ================= 2025 ================= -->
+            <h2 class="year-heading">2025</h2>
+
+            
+            <section class="exhibition-row">
+                <div class="exhibition-square-trigger" id="trigger-exhibition-1">
+                    <div class="image-overlay"></div>
+                    <img src="images/utst1_cover.jpeg" alt="Utställning 1">
+                </div>
+                <div class="exhibition-text">
+                    <h2>Postcards - Pro-Bono </h2>
+                    <h3 class ="location">Rome, Italy</h3>
+                    <p>Exploring the collective fear of being forgotten, this group exhibtion in Parco Degli Acquedotti featured an interactive installation of postcards hung between trees.
+                        As visitors took the cards, new ones were added, creating a performance centered on the exchange of visibility, connection and memory. 
+                    </p>
+                </div>
+            </section>
+
+            <!-- ================= 2026 ================= -->
+            <h2 class="year-heading">2026</h2>
+            <!-- Utställning 2 (no-border döljer linjen under sig) -->
+            <section class="exhibition-row no-border">
+                <div class="exhibition-square-trigger" id="trigger-exhibition-2">
+                    <div class="image-overlay"></div>
+                    <img src="images/utst2_cover.jpeg" alt="Utställning 2">
+                </div>
+                <div class="exhibition-text">
+                    <h2>Gjord för att älska <i>("Made to love")</i></h2>
+                    <h3 class ="location">Uppsala, Sweden</h3>
+                    <p>Drawing inspiration from a formative period spent in Rome, Mirlind presents his first solo exhibition that explores the profound tension and harmony between classical aesthetics and homoeroticism.
+                        The series investigates how queer identity and desire can claim space in environments where they have traditionally been rendered invisible. </p>
+                </div>
+            </section>
+
+            <!-- Utställning 3 -->
+            <section class="exhibition-row">
+                <div class="exhibition-square-trigger" id="trigger-exhibition-3">
+                    <div class="image-overlay"></div>
+                    <img src="images/deer_pants.jpeg" alt="Utställning 3">
+                </div>
+                <div class="exhibition-text">
+                    <h2>Upcoming exhibition...</h2>
+                    <p></p>
+                </div>
+            </section>
+
+            <!-- FOOTER I BOTTEN AV DEN SOLIDA CONTAINERN -->
+        <footer class="footer-container">
+
+            <div class="footer-item c1">
+                <p class="copyright-text">&copy; 2026 Mirlind Jakupi. All rights reserved.</p>
+            </div>
+
+            <div class="footer-content">
+                <img src="images/butterfly_logo_cropped.jpeg" alt="Symbol" class="butterfly_logo">
+
+                <div class="footer-buttons">
+                    <a href="https://instagram.com/mirlindjakupi" target="_blank" class="nav-link">
+                        <img src="images/instagram_logo_greyer.png" alt="instagram" class = "instagram_button">
+                    </a>
+                <div class="share-wrapper">
+                        <a href="javascript:void(0);" class="nav-link" id="share-btn">
+                            <img src="images/share_logo_grey.png" alt="share" class="share-button">
+                        </a>
+                        <span id="share-tooltip" class="share-tooltip">Link copied</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-item c3"></div>
+        </footer>
+
+        </div> <!-- Slut på .exhibitions-content-wrapper -->
+
+    </div> <!-- Slut på .exhibitions-container -->
+
+
+    <!-- Här under ligger ditt <div id="image-modal"> och JavaScript precis som förut -->
+
+
+    <!-- HELSKÄRMS-GALLERI (LIGHTBOX) -->
+    <div id="image-modal" class="modal">
+        <button id="close-modal" class="modal-close">Stäng</button>
+        <button id="prev-btn" class="modal-arrow prev-arrow">&lsaquo;</button>
+        <button id="next-btn" class="modal-arrow next-arrow">&rsaquo;</button>
+        <img id="modal-img" class="modal-content" src="" alt="Galleri helskärm">
+    </div>
+
+
+    
+<script>
+    // Här definierar du vilka bilder som ska ingå i galleriet för respektive utställning
+    const exhibitionGalleries = {
+        "trigger-exhibition-1": [
+            "images/utst1_cover.jpeg",
+            "images/utst1a.jpeg",
+            "images/utst1b.jpeg",
+            "images/utst1c.jpeg",
+            "images/utst1d.jpeg"
+        ],
+        "trigger-exhibition-2": [
+            "images/utst2_cover.jpeg",
+            "images/utst2a.jpeg",
+            "images/utst_parallax.jpeg",
+            "images/utst2b.jpeg",
+            "images/utst2c.jpeg",
+            "images/utst2d.jpeg",
+            "images/utst2e.jpeg",
+            "images/utst2f.jpeg",
+            "images/utst2g.jpeg",
+            "images/utst2h.jpeg",
+            "images/utst2i.jpeg",
+
+        ],
+
+        "trigger-exhibition-3": [
+            "images/deer_pants.jpeg"
+        ]
+    };
+
+    const modal = document.getElementById("image-modal");
+    const modalImg = document.getElementById("modal-img");
+    const closeModalBtn = document.getElementById("close-modal");
+    const prevBtn = document.getElementById("prev-btn");
+    const nextBtn = document.getElementById("next-btn");
+
+    let currentGallery = [];
+    let currentModalIndex = 0;
+
+    function updateModalImage(index) {
+        currentModalIndex = index;
+        modalImg.style.opacity = 0;
+        setTimeout(() => {
+            modalImg.src = currentGallery[currentModalIndex];
+            modalImg.style.opacity = 1;
+        }, 200);
+    }
+
+    function showNextImage() {
+        let nextIndex = (currentModalIndex + 1) % currentGallery.length;
+        updateModalImage(nextIndex);
+    }
+
+    function showPrevImage() {
+        let prevIndex = (currentModalIndex - 1 + currentGallery.length) % currentGallery.length;
+        updateModalImage(prevIndex);
+    }
+
+    // Lyssnare för att öppna specifikt galleri baserat på vilken ruta man klickar på
+    document.querySelectorAll(".exhibition-square-trigger").forEach(trigger => {
+        trigger.addEventListener("click", function() {
+            const galleryId = this.id;
+            currentGallery = exhibitionGalleries[galleryId]; // Hämtar bildlistan ovan
+            modal.classList.add("show");
+            updateModalImage(0); // Starta på första bilden i galleriet
+        });
+    });
+
+    function closeModal() { modal.classList.remove("show"); }
+    closeModalBtn.addEventListener("click", closeModal);
+    modal.addEventListener("click", (e) => { if (e.target === modal) closeModal(); });
+    nextBtn.addEventListener("click", (e) => { e.stopPropagation(); showNextImage(); });
+    prevBtn.addEventListener("click", (e) => { e.stopPropagation(); showPrevImage(); });
+
+    document.addEventListener("keydown", function(event) {
+        if (!modal.classList.contains("show")) return;
+        if (event.key === "ArrowRight") showNextImage();
+        else if (event.key === "ArrowLeft") showPrevImage();
+        else if (event.key === "Escape") closeModal();
+    });
+</script>
+    <!-- Lägg till denna rad längst ned i dina HTML-filer -->
+    <script src="smoothscroll.js"></script>
+
+
+</body>
+</html>

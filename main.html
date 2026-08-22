@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Mirlinds Konst</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Google Fonts för typsnittet Rufina (Måste finnas i head på ALLA sidor) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Rufina:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Din CSS-länk ska ligga UNDER Google-länkarna -->
+    <link rel="stylesheet" href="main.css">
+
+</head>
+<body>
+    <!-- MENYN HÖGST UPP (RAD A) - Denna kopierar du sedan till dina andra sidor -->
+    <header class="site-header">
+        <div class="header-item a1">
+            <a href="main.html" class="logo-link">
+                <img src="images/signature_cropped.jpeg" alt="Mirlind Jakupi Logo" class="header-logo">
+            </a>
+        </div>
+
+
+        <div class="header-item a2">
+            <nav class="main-nav">
+                <a href="main.html" class="nav-link active">Home</a>
+                <a href="exhibitions.html" class="nav-link">Exhibitions</a>
+                <a href="works.html" class="nav-link">Works</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
+        </div>
+
+        <div class="header-item a3">
+        <!-- Bilden ligger nu helt fristående utan länk-tagg runt sig -->
+        <img src="images/deer_logo_cropped.jpeg" alt="Symbol" class="deer_logo">
+</div>
+
+    </header>
+
+    <!-- BILDERNA (RAD B) - Ligger kant i kant över hela skärmen -->
+    <div class="home-image-grid">
+        <a href="#" class="image-link fade-up-image fade-in-1">
+            <div class="image-overlay"></div>
+            <img src="images/shoe_socks.jpeg" alt="Konstverk 1">
+        </a>
+        <a href="#" class="image-link fade-up-image fade-in-2">
+            <div class="image-overlay"></div>
+            <img src="images/deer_dead.jpeg" alt="Konstverk 2">
+        </a>
+        <a href="#" class="image-link fade-up-image fade-in-3">
+            <div class="image-overlay"></div>
+            <img src="images/socks_help.jpeg" alt="Konstverk 3">
+        </a>
+    </div>
+
+    <!-- FOOTER (RAD C) - Centrerad längst ned på sidan -->
+    <footer class="footer-container">
+
+        <div class="footer-item c1">
+            <p class="copyright-text">&copy; 2026 Mirlind Jakupi. All rights reserved.</p>
+        </div>
+
+        <div class="footer-content">
+            <img src="images/butterfly_logo_cropped.jpeg" alt="Symbol" class="butterfly_logo">
+
+            <div class="footer-buttons">
+                <a href="https://instagram.com/mirlindjakupi" target="_blank" class="nav-link">
+                    <img src="images/instagram_logo_greyer.png" alt="instagram" class = "instagram_button">
+                </a>
+
+                <div class="share-wrapper">
+                <a href="javascript:void(0);" class="nav-link" id="share-btn">
+                    <img src="images/share_logo_grey.png" alt="share" class="share-button">
+                </a>
+                <span id="share-tooltip" class="share-tooltip">Link copied</span>
+            </div>
+            </div>
+        </div>
+        
+        <div class="footer-item c3"></div>
+    </footer>
+
+    <!-- HELSKÄRMSVISNING (MODAL / LIGHTBOX) -->
+    <div id="image-modal" class="modal">
+        <button id="close-modal" class="modal-close">Stäng</button>
+        <button id="prev-btn" class="modal-arrow prev-arrow">&lsaquo;</button>
+        <button id="next-btn" class="modal-arrow next-arrow">&rsaquo;</button>
+        <img id="modal-img" class="modal-content" src="" alt="Helskärmsvisning">
+    </div>
+
+<!-- JAVASCRIPT FÖR HELSKÄRM, PILTANGENTER OCH UI-KNAPPAR -->
+<script>
+    const modal = document.getElementById("image-modal");
+    const modalImg = document.getElementById("modal-img");
+    const closeModalBtn = document.getElementById("close-modal");
+    const prevBtn = document.getElementById("prev-btn");
+    const nextBtn = document.getElementById("next-btn");
+    
+    const imageLinks = Array.from(document.querySelectorAll(".image-link"));
+    let currentModalIndex = 0;
+
+    function updateModalImage(index) {
+        currentModalIndex = index;
+        const nextSrc = imageLinks[currentModalIndex].querySelector("img").src;
+        
+        modalImg.style.opacity = 0;
+        setTimeout(() => {
+            modalImg.src = nextSrc;
+            modalImg.style.opacity = 1;
+        }, 200);
+    }
+
+    function showNextImage() {
+        let nextIndex = (currentModalIndex + 1) % imageLinks.length;
+        updateModalImage(nextIndex);
+    }
+
+    function showPrevImage() {
+        let prevIndex = (currentModalIndex - 1 + imageLinks.length) % imageLinks.length;
+        updateModalImage(prevIndex);
+    }
+
+    imageLinks.forEach((link, index) => {
+        link.addEventListener("click", function(event) {
+            event.preventDefault();
+            modal.classList.add("show");
+            updateModalImage(index);
+        });
+    });
+
+    function closeModal() {
+        modal.classList.remove("show");
+    }
+    closeModalBtn.addEventListener("click", closeModal);
+    modal.addEventListener("click", (event) => {
+        if (event.target === modal) closeModal();
+    });
+
+    nextBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        showNextImage();
+    });
+    
+    prevBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        showPrevImage();
+    });
+
+    document.addEventListener("keydown", function(event) {
+        if (!modal.classList.contains("show")) return;
+        if (event.key === "ArrowRight") {
+            showNextImage();
+        } else if (event.key === "ArrowLeft") {
+            showPrevImage();
+        } else if (event.key === "Escape") {
+            closeModal();
+        }
+    });
+</script>
+
+    <!-- Lägg till denna rad längst ned i dina HTML-filer -->
+    <script src="smoothscroll.js"></script>
+</body>
+</html>

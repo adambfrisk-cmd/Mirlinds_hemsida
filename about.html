@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>About - Mirlinds Konst</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Google Fonts för typsnittet Rufina -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Rufina:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Din CSS-länk ska ligga UNDER Google-länkarna -->
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+    <!-- MENYN HÖGST UPP (RAD A) - Identisk, med About inställd som aktiv -->
+    <header class="site-header">
+        <div class="header-item a1">
+            <a href="main.html" class="logo-link">
+                <img src="images/signature_cropped.jpeg" alt="Mirlind Jakupi Logo" class="header-logo">
+            </a>
+        </div>
+        <div class="header-item a2">
+            <nav class="main-nav">
+                <a href="main.html" class="nav-link">Home</a>
+                <a href="exhibitions.html" class="nav-link">Exhibitions</a>
+                <a href="works.html" class="nav-link">Works</a>
+                <a href="about.html" class="nav-link active">About</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
+        </div>
+
+        <div class="header-item a3">
+            <img src="images/deer_logo_cropped.jpeg" alt="Symbol" class="deer_logo">
+        </div>
+    </header>
+
+    <!-- INNEHÅLL PÅ ABOUT-SIDAN -->
+    <main class="about-container">
+        
+        <!-- VÄNSTER SIDA: Textruta -->
+        <div class="about-text-column about-fade-text">
+            <!-- Rubriken är här länkad till kontaktsidan och använder samma linje-animation -->
+            <h2>Mirlind Jakupi</h2>
+            
+            <p>Mirlind infuses personal experiences with influences from literature, film and art history, transforming intimate memories into powerful images that invite viewers into a world that feels both familiar and strange.
+                After completing his foundational studies in art at Wiks folkhögskola in Sweden, he continued his education at the Nuova Accademia delle Belle Arti in Rome. 
+                His works explores universal themes of vulnerability, existence and the deep-seated human need to be remembered. 
+                Mirlind has showcased his art in several exhibitions across Sweden and Italy, including his interactive public performance in Rome's Parco degli Acquedotti. 
+                Through expressive works he strives to challenge norms and create space for unheard voices.
+            </p>
+            <div class = "education">
+            <h3>Education</h3>
+            <p>2022/23 Wiks folkhögskola, Art and Design, Uppsala, Sweden
+            <p>2024/25 Nuova Accademia delle Belle Arti, Painting and Visual Arts, Rome, Italy</p>
+            </p>
+            </div>
+            
+
+        </div>
+
+        <!-- HÖGER SIDA: Bildrutan (bild6) -->
+        <div class="about-image-column fade-up-image">
+            <img src="images/mirlind.JPG" alt="Mirlind Jakupi - Porträtt">
+        </div>
+
+    </main>
+        <!-- ... Här slutar din <main class="about-container"> ... -->
+    </main>
+
+    <!-- NYTT: Samma footer som på de andra sidorna adderad längst ned -->
+    <footer class="footer-container">
+
+        <div class="footer-item c1">
+            <p class="copyright-text">&copy; 2026 Mirlind Jakupi. All rights reserved.</p>
+        </div>
+
+        <div class="footer-content">
+            <img src="images/butterfly_logo_cropped.jpeg" alt="Symbol" class="butterfly_logo">
+
+            <div class="footer-buttons">
+                <a href="https://instagram.com/mirlindjakupi" target="_blank" class="nav-link">
+                    <img src="images/instagram_logo_greyer.png" alt="instagram" class = "instagram_button">
+                </a>
+                <div class="share-wrapper">
+                        <a href="javascript:void(0);" class="nav-link" id="share-btn">
+                            <img src="images/share_logo_grey.png" alt="share" class="share-button">
+                        </a>
+                        <span id="share-tooltip" class="share-tooltip">Link copied</span>
+                    </div>
+            </div>
+        </div>
+        
+        <div class="footer-item c3"></div>
+    </footer>
+
+    <!-- Laddar in din mjuka skrollning automatiskt -->
+    <script src="smoothscroll.js"></script>
+</body>
+</html>
