@@ -1109,6 +1109,10 @@ a {
         max-width: 100%;
     }
 
+    .parallax-bg {
+        size-adjust: inherit;
+    }
+
 
     /* 4. ABOUT-SIDAN (about.html) */
     .about-container {
