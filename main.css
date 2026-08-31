@@ -500,16 +500,20 @@ a {
 
 
 .parallax-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    z-index: -1;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: var(--mobile-height, 100dvh); 
+        background-size: contain; 
+        
+        /* FIXAR POSITIONEN: Centrerar bilden i sidled (center) och trycker ner den 50vh i höjdled (50vh) */
+        background-position: center 70vh; 
+        
+        background-repeat: no-repeat;
+        background-attachment: scroll;
+        z-index: -1;
+        will-change: transform;
 }
 
 .exhibitions-hero {
