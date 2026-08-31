@@ -1091,6 +1091,23 @@ a {
         height: 30vh; /* Mindre glipa i mobilen så skrollet känns tajtare */
     }
 
+    .parallax-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: var(--mobile-height, 100dvh); 
+        background-size: contain; 
+        
+        /* FIXAR POSITIONEN: Centrerar bilden i sidled (center) och trycker ner den 50vh i höjdled (50vh) */
+        background-position: center 70vh; 
+        
+        background-repeat: no-repeat;
+        background-attachment: scroll;
+        z-index: -1;
+        will-change: transform;
+    }
+
     .exhibition-row {
         flex-direction: column; /* Lägger bilden ovanför texten istället för bredvid */
         gap: 30px;
@@ -1107,23 +1124,6 @@ a {
     .exhibition-text {
         text-align: center; /* Centrerar texten under bilden för bättre läsbarhet */
         max-width: 100%;
-    }
-
-    .parallax-bg {
-       position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: var(--mobile-height, 100dvh); 
-        background-size: contain; 
-        
-        /* FIXAR POSITIONEN: Centrerar bilden i sidled (center) och trycker ner den 50vh i höjdled (50vh) */
-        background-position: center 70vh; 
-        
-        background-repeat: no-repeat;
-        background-attachment: scroll;
-        z-index: -1;
-        will-change: transform;
     }
 
 
