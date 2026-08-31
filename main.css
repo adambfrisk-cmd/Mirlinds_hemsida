@@ -499,7 +499,7 @@ a {
 }
 
 
-.parallax-bg {
+. {
     position: fixed;
     top: 0;
     left: 0;
@@ -1080,7 +1080,7 @@ a {
 
     /* 3. UTSTÄLLNINGSSIDAN (exhibitions.html) */
     .exhibitions-hero {
-        height: 50vh; /* Kortare startblock i mobilen så man snabbare kan skrolla ner */
+        height: 30vh; /* Kortare startblock i mobilen så man snabbare kan skrolla ner */
     }
 
     .hero-title {
