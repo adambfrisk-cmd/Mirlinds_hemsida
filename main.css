@@ -1080,11 +1080,12 @@ a {
 
     /* 3. UTSTÄLLNINGSSIDAN (exhibitions.html) */
     .exhibitions-hero {
-        height: 30vh; /* Kortare startblock i mobilen så man snabbare kan skrolla ner */
+        height: 20vh; /* Kortare startblock i mobilen så man snabbare kan skrolla ner */
     }
 
     .hero-title {
         font-size: 2.5rem;
+        padding-top: 20%;
     }
 
     .parallax-spacer {
