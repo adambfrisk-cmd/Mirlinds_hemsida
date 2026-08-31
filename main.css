@@ -1089,7 +1089,7 @@ a {
     }
 
     .parallax-spacer {
-        height: 30vh; /* Mindre glipa i mobilen så skrollet känns tajtare */
+        height: 45vh; /* Mindre glipa i mobilen så skrollet känns tajtare */
     }
 
     .parallax-bg {
