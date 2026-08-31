@@ -1114,11 +1114,14 @@ a {
         top: 0;
         left: 0;
         width: 100%;
-        height: 100%;
+        /* Fixar problem med hoppande URL-bar på mobil */
+        height: -webkit-fill-available; 
+        height: 100vh; 
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        background-attachment: fixed;
+        /* VIKTIGT: Stäng av fixed på mobilen, position: fixed på containern gör jobbet istället */
+        background-attachment: scroll; 
         z-index: -1;
     }
 
