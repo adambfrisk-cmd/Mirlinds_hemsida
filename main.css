@@ -499,7 +499,7 @@ a {
 }
 
 
-. {
+.parallax-bg {
     position: fixed;
     top: 0;
     left: 0;
@@ -1098,7 +1098,7 @@ a {
         left: 0;
         width: 100%;
         height: var(--mobile-height, 100dvh); 
-        background-size: contain; 
+        background-size: 130% auto; 
         
         /* FIXAR POSITIONEN: Centrerar bilden i sidled (center) och trycker ner den 50vh i höjdled (50vh) */
         background-position: center 45vh; 
